@@ -32,7 +32,7 @@ pip install torch torchvision matplotlib tqdm
 First, clone the repository to your local machine using Git:
 
 ```bash
-git clone https://github.com/your-username/gan-project.git
+git clone https://github.com/Ayoub-Elkhaiari/GAN_MNIST.git
 cd gan-project
 ```
 
