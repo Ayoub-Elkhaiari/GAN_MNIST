@@ -1,4 +1,4 @@
-# GAN Project(PyTorch Version)
+# GAN Project (PyTorch Version)
 the TensorFlow version is similar to that the only difference is in the display method 
 
 ## Overview
