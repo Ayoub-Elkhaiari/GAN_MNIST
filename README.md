@@ -1,4 +1,5 @@
-# GAN Project
+# GAN Project(PyTorch Version)
+the TensorFlow version is similar to that the only difference is in the display method 
 
 ## Overview
 This project implements a Generative Adversarial Network (GAN) using PyTorch. The GAN is composed of two main components:
