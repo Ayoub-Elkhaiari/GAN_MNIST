@@ -11,14 +11,26 @@ torch.manual_seed(0) # Set for testing purposes, please do not change!
 from Generator import Generator, get_noise, get_gen_loss
 from Discrimator import Discriminator, get_disc_loss
 
-def show_tensor_images(image_tensor, num_images=25, size=(1, 28, 28)):
+def show_tensor_images(gen_images, real_images, num_images=25, size=(1, 28, 28)):
     '''
-    Function for visualizing images: Given a tensor of images, number of images, and
-    size per image, plots and prints the images in a uniform grid.
+    Function for visualizing images: Given two tensors of images (generated and real),
+    number of images to display, and size per image, plots and prints the images in a uniform grid.
+    The generated images are displayed next to the real images.
     '''
-    image_unflat = image_tensor.detach().cpu().view(-1, *size)
-    image_grid = make_grid(image_unflat[:num_images], nrow=5)
-    plt.imshow(image_grid.permute(1, 2, 0).squeeze())
+    # Flatten the images tensors and ensure they are on CPU
+    gen_images_unflat = gen_images.detach().cpu().view(-1, *size)
+    real_images_unflat = real_images.detach().cpu().view(-1, *size)
+
+    # Concatenate the generated and real images along the width
+    images_combined = torch.cat([gen_images_unflat[:num_images], real_images_unflat[:num_images]], dim=0)
+
+    # Create a grid from the combined images
+    image_grid = make_grid(images_combined, nrow=num_images, padding=2, normalize=True)
+
+    # Plot the grid of images
+    plt.figure(figsize=(12, 6))
+    plt.imshow(image_grid.permute(1, 2, 0).squeeze(), cmap='gray')
+    plt.axis('off')
     plt.show()
     
     
@@ -113,8 +125,9 @@ for epoch in range(n_epochs):
             print(f"Step {cur_step}: Generator loss: {mean_generator_loss}, discriminator loss: {mean_discriminator_loss}")
             fake_noise = get_noise(cur_batch_size, z_dim, device=device)
             fake = gen(fake_noise)
-            show_tensor_images(fake)
-            show_tensor_images(real)
+            # show_tensor_images(fake)
+            # show_tensor_images(real)
+            show_tensor_images(fake, real)
             mean_generator_loss = 0
             mean_discriminator_loss = 0
         cur_step += 1
