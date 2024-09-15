@@ -130,4 +130,4 @@ def get_gen_loss(gen, disc, criterion, num_images, z_dim, device):
 ## Results
 As the training progresses, the generator learns to create more realistic images, while the discriminator learns to better distinguish between real and fake images. Below are some sample results after training for some epochs and still training:
 
-[![Screenshot 2024-09-15 160155](https://github.com/user-attachments/assets/8c6412bd-68ec-47e4-b68c-f7a5753bb406)]
+![Screenshot 2024-09-15 160155](https://github.com/user-attachments/assets/8c6412bd-68ec-47e4-b68c-f7a5753bb406)
